@@ -149,6 +149,9 @@ img {
 
 .hero-wrapper {
     position: relative;
+    width: 1084px;
+    max-width: calc(100% - 40px);
+    margin: 0 auto;
     border-radius: 20px;
     overflow: hidden;
     background: linear-gradient(135deg, #5d88b9 0%, #5782ef 100%);
