@@ -378,7 +378,8 @@ img {
 
 .article-card,
 .featured-card {
-    transition: none;
+    transition: none !important;
+    transform: none !important;
 }
 
 .article-card {
