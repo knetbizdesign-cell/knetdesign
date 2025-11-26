@@ -42,8 +42,15 @@ $borobill_featured_index = 1;
         </div>
 
         <div class="featured-grid">
-            <?php if ( $featured_query->have_posts() ) : ?>
-                <?php while ( $featured_query->have_posts() ) : $featured_query->the_post(); ?>
+            <?php
+            // 실제 출력된 카드 개수 카운트
+            $borobill_card_count = 0;
+
+            if ( $featured_query->have_posts() ) :
+                while ( $featured_query->have_posts() ) :
+                    $featured_query->the_post();
+                    $borobill_card_count++;
+                    ?>
                     <article class="featured-card">
                         <a href="<?php the_permalink(); ?>" class="featured-thumb-wrap">
                             <?php
@@ -84,9 +91,30 @@ $borobill_featured_index = 1;
                     </article>
                 <?php endwhile; ?>
                 <?php wp_reset_postdata(); ?>
-            <?php else : ?>
-                <p class="section-empty">아직 등록된 추천 게시물이 없습니다.</p>
             <?php endif; ?>
+
+            <?php
+            // 항상 3장의 카드가 보이도록, 부족한 개수만큼 플레이스홀더 카드 추가
+            for ( $i = $borobill_card_count + 1; $i <= 3; $i++ ) :
+                $fallback_key = isset( $borobill_featured_fallbacks[ $borobill_featured_index ] )
+                    ? $borobill_featured_index
+                    : 1;
+                $fallback_src = get_template_directory_uri() . '/images/' . $borobill_featured_fallbacks[ $fallback_key ];
+                $borobill_featured_index++;
+                ?>
+                <article class="featured-card featured-card--placeholder">
+                    <div class="featured-thumb-wrap">
+                        <img src="<?php echo esc_url( $fallback_src ); ?>"
+                             class="featured-thumb"
+                             alt="추천 게시물 이미지">
+                    </div>
+                    <div class="featured-meta">
+                        <span class="badge badge-small">바로빌 가이드</span>
+                        <span class="meta-date"><?php echo esc_html( date( 'Y.m.d' ) ); ?></span>
+                    </div>
+                    <h3 class="featured-title">추천 게시물을 준비 중입니다.</h3>
+                </article>
+            <?php endfor; ?>
         </div>
     </div>
 </section>
