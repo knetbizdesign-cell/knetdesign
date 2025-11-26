@@ -8,12 +8,13 @@ jQuery(function ($) {
 
         inlineEditPost.revert(); // 기본 빠른편집 세팅
 
-        var $qeRow  = $('#edit-' + postId);
-        var thumbId = $row.data('thumb-id') || '';
+        var $qeRow   = $('#edit-' + postId);
+        var $thumbTd = $row.find('.column-thumbnail .borobill-thumb-cell');
+        var thumbId  = $thumbTd.data('thumb-id') || '';
 
         $qeRow.find('.borobill-qe-thumb-id').val(thumbId);
 
-        var thumbSrc = $row.find('.column-thumbnail img').attr('src') || '';
+        var thumbSrc = $thumbTd.find('img').attr('src') || '';
         if (thumbSrc) {
             $qeRow.find('.borobill-qe-thumb').attr('src', thumbSrc).show();
         } else {

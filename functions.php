@@ -29,7 +29,8 @@ function borobill_post_date() {
 
 // 빠른편집: 특성이미지 필드 추가
 function borobill_quick_edit_featured_image( $column_name, $post_type ) {
-    if ( 'post' !== $post_type || 'title' !== $column_name ) {
+    // 우리 custom column 'thumbnail' 에만 출력
+    if ( 'post' !== $post_type || 'thumbnail' !== $column_name ) {
         return;
     }
     ?>
@@ -84,4 +85,39 @@ function borobill_admin_quick_edit_scripts( $hook ) {
     );
 }
 add_action( 'admin_enqueue_scripts', 'borobill_admin_quick_edit_scripts' );
+
+
+// 글 목록에 썸네일 컬럼 추가
+function borobill_add_thumbnail_column( $columns ) {
+    $new = array();
+
+    foreach ( $columns as $key => $label ) {
+        if ( 'title' === $key ) {
+            $new['thumbnail'] = '썸네일';
+        }
+        $new[ $key ] = $label;
+    }
+
+    return $new;
+}
+add_filter( 'manage_posts_columns', 'borobill_add_thumbnail_column' );
+
+// 썸네일 컬럼 내용 출력
+function borobill_render_thumbnail_column( $column, $post_id ) {
+    if ( 'thumbnail' !== $column ) {
+        return;
+    }
+
+    $thumb_id = get_post_thumbnail_id( $post_id );
+
+    echo '<span class="borobill-thumb-cell" data-thumb-id="' . esc_attr( $thumb_id ) . '">';
+
+    if ( $thumb_id ) {
+        echo get_the_post_thumbnail( $post_id, 'thumbnail' );
+    }
+
+    echo '</span>';
+}
+add_action( 'manage_posts_custom_column', 'borobill_render_thumbnail_column', 10, 2 );
+
 
