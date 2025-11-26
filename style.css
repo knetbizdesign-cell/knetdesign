@@ -461,6 +461,25 @@ img {
     color: #0f4cff;
 }
 
+/* 페이지 레이아웃 */
+.page-main {
+    padding: 60px 0;
+}
+
+.page-section {
+    margin-bottom: 60px;
+}
+
+.page-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0 0 24px;
+}
+
+.page-content > *:last-child {
+    margin-bottom: 0;
+}
+
 /* 배너 */
 .section-banner {
     margin-top: 56px;
