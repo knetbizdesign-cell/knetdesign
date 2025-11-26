@@ -54,20 +54,24 @@ img {
 }
 
 .badge {
-    display: inline-block;
-    padding: 4px 10px;
-    border-radius: 12px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 16px;
+    border-radius: 999px;
     background: #e4e8ed;
     font-size: 12px;
     color: #2d4a62;
 }
 
 .badge-small {
-    font-size: 11px;
+    width: 96px;
+    height: 30px;
+    font-size: 14px;
 }
 
 .meta-date {
-    font-size: 12px;
+    font-size: 14px;
     color: #7d899c;
     margin-left: 8px;
 }
@@ -127,17 +131,20 @@ img {
 }
 
 .nav-link {
-    font-size: 14px;
-    color: #425674;
+    font-size: 17px;
+    color: #505050;
 }
 
 .chatbot-btn {
-    display: inline-block;
-    padding: 7px 18px;
-    border-radius: 20px;
-    background: #0f4cff;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 98px;
+    height: 35px;
+    border-radius: 5px;
+    background: #17171c;
     color: #ffffff;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 600;
 }
 
@@ -184,9 +191,9 @@ img {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     text-align: center;
-    padding: 32px 80px;
+    padding: 85px 80px 32px; /* 상단에서 85px 아래 시작 */
 }
 
 .hero-badge {
@@ -195,7 +202,7 @@ img {
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.18);
     font-size: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 25px; /* 배지 아래 25px 간격 후 큰 타이틀 */
 }
 
 .hero-illust {
@@ -247,8 +254,8 @@ img {
 }
 
 .section-featured .section-title {
-    /* Figma: 약 35px → 살짝 줄여서 적용 */
-    font-size: 30px;
+    /* Figma: 35px */
+    font-size: 35px;
     font-weight: 700;
 }
 
@@ -265,7 +272,7 @@ img {
     border-radius: 999px;
     border: none;
     background: #e8ecf5;
-    font-size: 14px;
+    font-size: 17px;
     outline: none;
     padding-right: 44px; /* 아이콘 여백 */
 }
@@ -287,6 +294,11 @@ img {
     width: 24px;
     height: 24px;
     display: block;
+}
+
+.search-field::placeholder {
+    font-size: 17px;
+    color: #9fa4af;
 }
 
 .featured-grid {
@@ -353,13 +365,13 @@ img {
     padding: 0;
     border: none;
     background: none;
-    font-size: 18px;
+    font-size: 35px;
     cursor: pointer;
-    color: #7d899c;
+    color: #505050;
 }
 
 .filter-item.active {
-    color: #222222;
+    color: #0b0b0e;
     font-weight: 700;
     position: relative;
 }
@@ -404,8 +416,8 @@ img {
 }
 
 .article-title {
-    /* Figma: 약 26px */
-    font-size: 24px;
+    /* Figma: 26px */
+    font-size: 26px;
     font-weight: 700;
     margin: 0;
 }
@@ -415,14 +427,14 @@ img {
 }
 
 .article-thumb-wrap {
-    width: 210px;
+    width: 320px;
     margin-left: 40px;
 }
 
 .article-thumb {
-    width: 100%;
-    height: 140px;
-    border-radius: 14px;
+    width: 320px;
+    height: 220px;
+    border-radius: 20px;
     object-fit: cover;
 }
 
