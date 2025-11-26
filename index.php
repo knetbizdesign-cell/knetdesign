@@ -3,14 +3,16 @@
 <section class="hero-section">
     <div class="hero-wrapper">
         <div class="hero-bg"></div>
+
+        <img src="<?php echo esc_url( get_template_directory_uri() . '/images/1.png' ); ?>"
+             class="hero-illust"
+             alt="바로빌 캐릭터">
+
         <div class="hero-content">
             <div class="hero-badge">안녕하세요. 바로빌 블로그에 오신 걸 환영합니다.</div>
 
-            <img src="<?php echo esc_url( get_template_directory_uri() . '/images/1.png' ); ?>"
-                 class="hero-illust"
-                 alt="바로빌 캐릭터">
-
             <h1 class="hero-title">바로빌과 함께하는 스마트백 오피스 실무</h1>
+
             <div class="hero-indicators">
                 <span class="dot"></span>
                 <span class="dot"></span>
