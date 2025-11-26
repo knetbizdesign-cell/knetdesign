@@ -9,6 +9,12 @@
 <section class="section section-list">
     <div class="section-inner">
         <div class="post-list">
+            <?php
+            // 썸네일이 없을 때 사용할 테마 기본 이미지 (1~10.png 순환)
+            $borobill_list_thumb_index = 4; // 추천 영역 1~3 사용 가정, 리스트는 4부터
+            $borobill_list_thumb_max   = 10;
+            ?>
+
             <?php if ( have_posts() ) : ?>
                 <?php while ( have_posts() ) : the_post(); ?>
                     <?php
@@ -38,8 +44,15 @@
                                         'alt'   => esc_attr( get_the_title() ),
                                     ] );
                                 } else {
+                                    $fallback_src = get_template_directory_uri() . '/images/' . $borobill_list_thumb_index . '.png';
+                                    $borobill_list_thumb_index++;
+                                    if ( $borobill_list_thumb_index > $borobill_list_thumb_max ) {
+                                        $borobill_list_thumb_index = 4;
+                                    }
                                     ?>
-                                    <div class="article-thumb article-thumb--placeholder"></div>
+                                    <img src="<?php echo esc_url( $fallback_src ); ?>"
+                                         class="article-thumb"
+                                         alt="<?php echo esc_attr( get_the_title() ); ?>" />
                                     <?php
                                 }
                                 ?>

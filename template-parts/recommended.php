@@ -8,6 +8,10 @@ $featured_query = new WP_Query([
     'posts_per_page' => 3,
     'ignore_sticky_posts' => true,
 ]);
+
+// 썸네일이 없을 때 사용할 테마 기본 이미지 (1~10.png 순환)
+$borobill_thumb_index = 1;
+$borobill_thumb_max   = 10;
 ?>
 
 <section class="section section-featured">
@@ -41,8 +45,15 @@ $featured_query = new WP_Query([
                                     'alt'   => esc_attr( get_the_title() ),
                                 ] );
                             } else {
+                                $fallback_src = get_template_directory_uri() . '/images/' . $borobill_thumb_index . '.png';
+                                $borobill_thumb_index++;
+                                if ( $borobill_thumb_index > $borobill_thumb_max ) {
+                                    $borobill_thumb_index = 1;
+                                }
                                 ?>
-                                <div class="featured-thumb featured-thumb--placeholder"></div>
+                                <img src="<?php echo esc_url( $fallback_src ); ?>"
+                                     class="featured-thumb"
+                                     alt="<?php echo esc_attr( get_the_title() ); ?>" />
                                 <?php
                             }
                             ?>
