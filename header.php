@@ -20,14 +20,14 @@
 
             <nav class="header-nav">
                 <?php
-                // wp_nav_menu 로 Header Menu 출력
+                // wp_nav_menu 로 Header Menu 출력 (2단계 메뉴까지)
                 wp_nav_menu(
                     array(
                         'theme_location' => 'header-menu',
                         'container'      => false,
                         'menu_class'     => 'nav-menu',
                         'fallback_cb'    => false,
-                        'depth'          => 1,
+                        'depth'          => 2,
                     )
                 );
                 ?>

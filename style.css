@@ -131,6 +131,44 @@ img {
     padding: 0;
 }
 
+.header-nav .nav-menu > li {
+    position: relative;
+}
+
+.header-nav .nav-menu .sub-menu {
+    position: absolute;
+    top: 140%; /* 상위 메뉴 아래 약간 떨어뜨리기 */
+    left: 0;
+    list-style: none;
+    margin: 0;
+    padding: 12px 0;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(15, 36, 64, 0.12);
+    min-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px);
+    transition: opacity .15s ease, transform .15s ease, visibility .15s;
+    z-index: 20;
+}
+
+.header-nav .nav-menu .sub-menu li {
+    padding: 4px 18px;
+    white-space: nowrap;
+}
+
+.header-nav .nav-menu .sub-menu a {
+    font-size: 15px;
+    color: #505050;
+}
+
+.header-nav .nav-menu > li:hover > .sub-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
 .nav-link {
     font-size: 17px;
     color: #505050;
