@@ -219,6 +219,10 @@ img {
 }
 
 .hero-indicators {
+    position: absolute;
+    left: 50%;
+    bottom: 40px; /* 히어로 섹션 하단에서 40px 위 */
+    transform: translateX(-50%);
     display: flex;
     gap: 8px;
 }
