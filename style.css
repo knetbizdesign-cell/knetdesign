@@ -201,7 +201,8 @@ img {
 
 .hero-illust {
     width: 430px;
-    height: 430px;
+    height: auto;
+    max-height: 90%;
     object-fit: contain;
     position: absolute;
     left: 50%;
