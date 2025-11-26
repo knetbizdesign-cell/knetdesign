@@ -25,3 +25,63 @@ add_action('wp_enqueue_scripts', 'borobill_enqueue_assets');
 function borobill_post_date() {
     return get_the_date('Y.m.d');
 }
+
+
+// 빠른편집: 특성이미지 필드 추가
+function borobill_quick_edit_featured_image( $column_name, $post_type ) {
+    if ( 'post' !== $post_type || 'title' !== $column_name ) {
+        return;
+    }
+    ?>
+    <fieldset class="inline-edit-col-right inline-edit-borobill-thumb">
+        <div class="inline-edit-col">
+            <label>
+                <span class="title">특성이미지</span>
+                <span class="input-text-wrap">
+                    <img src="" class="borobill-qe-thumb" style="max-width:80px;max-height:80px;display:none;margin-bottom:6px;">
+                    <button type="button" class="button borobill-set-thumb">이미지 선택</button>
+                    <button type="button" class="button borobill-remove-thumb">제거</button>
+                    <input type="hidden" name="borobill_qe_thumb_id" class="borobill-qe-thumb-id" value="">
+                </span>
+            </label>
+        </div>
+    </fieldset>
+    <?php
+}
+add_action( 'quick_edit_custom_box', 'borobill_quick_edit_featured_image', 10, 2 );
+
+
+// 빠른편집 저장 시 특성이미지 적용
+function borobill_save_quick_edit_featured_image( $post_id ) {
+    if ( ! isset( $_POST['borobill_qe_thumb_id'] ) ) {
+        return;
+    }
+
+    $thumb_id = absint( $_POST['borobill_qe_thumb_id'] );
+
+    if ( $thumb_id ) {
+        set_post_thumbnail( $post_id, $thumb_id );
+    } else {
+        delete_post_thumbnail( $post_id );
+    }
+}
+add_action( 'save_post', 'borobill_save_quick_edit_featured_image' );
+
+
+// 빠른편집 특성이미지용 스크립트 로드
+function borobill_admin_quick_edit_scripts( $hook ) {
+    if ( 'edit.php' !== $hook ) {
+        return;
+    }
+
+    wp_enqueue_media();
+    wp_enqueue_script(
+        'borobill-admin-quick-edit',
+        get_template_directory_uri() . '/js/admin-quick-edit.js',
+        array( 'jquery' ),
+        '1.0',
+        true
+    );
+}
+add_action( 'admin_enqueue_scripts', 'borobill_admin_quick_edit_scripts' );
+
