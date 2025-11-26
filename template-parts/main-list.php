@@ -10,10 +10,6 @@
     <div class="section-inner">
         <div class="post-list">
             <?php
-            // 썸네일이 없을 때 사용할 테마 기본 이미지 (1~10.png 순환)
-            $borobill_list_thumb_index = 4; // 추천 영역 1~3 사용 가정, 리스트는 4부터
-            $borobill_list_thumb_max   = 10;
-
             // 화면에 보여줄 최대 카드 수 (Figma: 5개 세로 배치)
             $borobill_max_cards   = 5;
             $borobill_card_rendered = 0;
@@ -43,24 +39,17 @@
                         <div class="article-thumb-wrap">
                             <a href="<?php the_permalink(); ?>">
                                 <?php
-                                if ( has_post_thumbnail() ) {
-                                    the_post_thumbnail( 'medium_large', [
-                                        'class' => 'article-thumb',
-                                        'alt'   => esc_attr( get_the_title() ),
-                                    ] );
-                                } else {
-                                    $fallback_src = get_template_directory_uri() . '/images/' . $borobill_list_thumb_index . '.png';
-                                    $borobill_list_thumb_index++;
-                                    if ( $borobill_list_thumb_index > $borobill_list_thumb_max ) {
-                                        $borobill_list_thumb_index = 4;
-                                    }
+                                // featured image from post (list card)
+                                if ( has_post_thumbnail() ) :
                                     ?>
-                                    <img src="<?php echo esc_url( $fallback_src ); ?>"
+                                    <img src="<?php echo esc_url( get_the_post_thumbnail_url( null, 'medium_large' ) ); ?>"
                                          class="article-thumb"
                                          alt="<?php echo esc_attr( get_the_title() ); ?>" />
-                                    <?php
-                                }
-                                ?>
+                                <?php else : ?>
+                                    <img src="<?php echo esc_url( get_template_directory_uri() . '/images/default.png' ); ?>"
+                                         class="article-thumb"
+                                         alt="기본 이미지" />
+                                <?php endif; ?>
                             </a>
                         </div>
                     </article>
@@ -70,11 +59,7 @@
             <?php
             // 실제 포스트 수가 5개 미만이면, 부족한 만큼 플레이스홀더 카드 추가
             for ( $i = $borobill_card_rendered + 1; $i <= $borobill_max_cards; $i++ ) :
-                $fallback_src = get_template_directory_uri() . '/images/' . $borobill_list_thumb_index . '.png';
-                $borobill_list_thumb_index++;
-                if ( $borobill_list_thumb_index > $borobill_list_thumb_max ) {
-                    $borobill_list_thumb_index = 4;
-                }
+                $fallback_src = get_template_directory_uri() . '/images/default.png';
                 ?>
                 <article class="article-card article-card--placeholder" data-category="etc">
                     <div class="article-info">
