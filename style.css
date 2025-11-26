@@ -260,18 +260,19 @@ img {
 
 .search-field {
     width: 280px;
-    padding: 10px 18px;
-    border-radius: 1050px;
+    height: 40px;
+    padding: 0 44px 0 15px; /* 오른쪽 아이콘 공간, 왼쪽 15px 여백 */
+    border-radius: 999px;
     border: none;
     background: #e8ecf5;
-    font-size: 13px;
+    font-size: 14px;
     outline: none;
     padding-right: 44px; /* 아이콘 여백 */
 }
 
 .search-icon-btn {
     position: absolute;
-    right: 10px;
+    right: 15px;
     top: 50%;
     transform: translateY(-50%);
     width: 24px;
