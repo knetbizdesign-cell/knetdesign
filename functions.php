@@ -1,15 +1,19 @@
 <?php
 
 function borobill_theme_setup() {
-    add_theme_support('title-tag');
-    add_theme_support('post-thumbnails');
-    add_theme_support('html5', ['search-form', 'gallery', 'caption']);
+    add_theme_support( 'title-tag' );
+    add_theme_support( 'post-thumbnails' );
+    add_theme_support( 'html5', array( 'search-form', 'gallery', 'caption' ) );
 
-    register_nav_menus([
-        'primary' => 'Primary Menu',
-    ]);
+    // header menu location 등록 (관리자에서 메뉴 연결용)
+    register_nav_menus(
+        array(
+            'primary'     => 'Primary Menu',
+            'header-menu' => 'Header Menu',
+        )
+    );
 }
-add_action('after_setup_theme', 'borobill_theme_setup');
+add_action( 'after_setup_theme', 'borobill_theme_setup' );
 
 
 function borobill_enqueue_assets() {
@@ -119,5 +123,17 @@ function borobill_render_thumbnail_column( $column, $post_id ) {
     echo '</span>';
 }
 add_action( 'manage_posts_custom_column', 'borobill_render_thumbnail_column', 10, 2 );
+
+
+// header-menu 링크에 .nav-link 클래스 추가 (스타일 재사용)
+function borobill_nav_menu_link_class( $atts, $item, $args ) {
+    if ( isset( $args->theme_location ) && 'header-menu' === $args->theme_location ) {
+        $existing          = isset( $atts['class'] ) ? $atts['class'] . ' ' : '';
+        $atts['class'] = $existing . 'nav-link';
+    }
+
+    return $atts;
+}
+add_filter( 'nav_menu_link_attributes', 'borobill_nav_menu_link_class', 10, 3 );
 
 

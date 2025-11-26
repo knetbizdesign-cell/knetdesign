@@ -19,12 +19,18 @@
             </div>
 
             <nav class="header-nav">
-                <ul class="nav-menu">
-                    <li><a href="#" class="nav-link">세무·회계·비즈니스</a></li>
-                    <li><a href="#" class="nav-link">사업자 뉴스룸</a></li>
-                    <li><a href="#" class="nav-link">바로빌 가이드</a></li>
-                    <li><a href="#" class="nav-link">고객사례·인사이트</a></li>
-                </ul>
+                <?php
+                // wp_nav_menu 로 Header Menu 출력
+                wp_nav_menu(
+                    array(
+                        'theme_location' => 'header-menu',
+                        'container'      => false,
+                        'menu_class'     => 'nav-menu',
+                        'fallback_cb'    => false,
+                        'depth'          => 1,
+                    )
+                );
+                ?>
             </nav>
 
             <div class="header-actions">
