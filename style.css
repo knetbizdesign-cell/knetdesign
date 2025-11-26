@@ -243,12 +243,15 @@ img {
 }
 
 .section-featured .section-title {
-    /* Figma: 35px */
-    font-size: 28px;
+    /* Figma: 약 35px → 살짝 줄여서 적용 */
+    font-size: 30px;
+    font-weight: 700;
 }
 
 .section-search {
     position: relative;
+    display: inline-flex;
+    align-items: center;
 }
 
 .search-field {
@@ -259,6 +262,26 @@ img {
     background: #e8ecf5;
     font-size: 13px;
     outline: none;
+    padding-right: 44px; /* 아이콘 여백 */
+}
+
+.search-icon-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.search-icon-btn img {
+    width: 24px;
+    height: 24px;
+    display: block;
 }
 
 .featured-grid {
@@ -270,8 +293,8 @@ img {
 .featured-card {
     background: #ffffff;
     border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(15, 36, 64, 0.12);
-    padding: 18px 18px 16px;
+    box-shadow: 0 10px 30px rgba(15, 36, 64, 0.08);
+    padding: 18px 18px 18px;
 }
 
 .featured-thumb-wrap {
@@ -292,12 +315,14 @@ img {
 }
 
 .featured-meta {
-    margin-bottom: 6px;
+    margin-bottom: 8px;
 }
 
 .featured-title {
-    font-size: 15px;
-    font-weight: 600;
+    /* Figma 카드 타이틀: 약 26px */
+    font-size: 22px;
+    line-height: 1.4;
+    font-weight: 700;
     margin: 0;
 }
 

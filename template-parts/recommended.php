@@ -30,6 +30,10 @@ $borobill_thumb_max   = 10;
                        placeholder="검색어를 입력해주세요"
                        value="<?php echo get_search_query(); ?>"
                        name="s" />
+                <button type="submit" class="search-icon-btn" aria-label="검색">
+                    <img src="<?php echo esc_url( get_template_directory_uri() . '/images/search.png' ); ?>"
+                         alt="검색 아이콘">
+                </button>
             </form>
         </div>
 
