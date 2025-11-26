@@ -15,9 +15,6 @@
             <div class="header-logo">
                 <a href="<?php echo esc_url(home_url('/')); ?>" class="logo-link">
                     <img src="<?php echo esc_url(get_template_directory_uri() . '/images/logo.png'); ?>" class="logo-img" alt="바로빌">
-                    <span class="logo-text">바로빌</span>
-                    <span class="logo-separator">|</span>
-                    <span class="logo-blog">Blog</span>
                 </a>
             </div>
 
