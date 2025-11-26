@@ -164,15 +164,14 @@ img {
 .hero-bg {
     position: absolute;
     inset: 0;
-    /* 어두운 오버레이 (이미지+배경 위) */
-    background:
-        radial-gradient(circle at center,
-            rgba(0, 0, 0, 0.35) 0%,
-            rgba(0, 0, 0, 0.25) 45%,
-            rgba(0, 0, 0, 0.15) 70%,
-            transparent 100%);
-    mix-blend-mode: multiply;
-    opacity: 0.95;
+    /* Figma 스타일의 상단 밝고 하단 어두운 오버레이 */
+    background: linear-gradient(
+        180deg,
+        rgba(217, 221, 233, 0.15) 0%,
+        rgba(104, 129, 159, 0.55) 45%,
+        rgba(51, 88, 105, 0.9) 100%
+    );
+    opacity: 0.98;
     pointer-events: none;
     z-index: 2;
 }
