@@ -1,0 +1,39 @@
+
+// 🔥 스타일 & 스크립트 로딩 (정상 작동 버전)
+function borobill_enqueue_assets() {
+
+    // 폰트
+    wp_enqueue_style(
+        'pretendard',
+        'https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css',
+        [],
+        '1.3.9'
+    );
+
+    // 🔥 style.css를 정확한 경로로 로드 + 캐시 방지
+    wp_enqueue_style(
+        'borobill-style',
+        get_stylesheet_directory_uri() . '/style.css',
+        ['pretendard'],
+        filemtime(get_stylesheet_directory() . '/style.css')
+    );
+
+    // jQuery
+    wp_enqueue_script('jquery');
+
+    // main.js
+    wp_enqueue_script(
+        'borobill-main',
+        get_template_directory_uri() . '/js/main.js',
+        ['jquery'],
+        filemtime(get_template_directory() . '/js/main.js'),
+        true
+    );
+}
+add_action('wp_enqueue_scripts', 'borobill_enqueue_assets');
+
+
+// 날짜 포맷
+function borobill_post_date() {
+    return get_the_date('Y.m.d');
+}

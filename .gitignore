@@ -1,0 +1,27 @@
+# WordPress
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# 로그 파일
+*.log
+
+# 임시 파일
+*.tmp
+*.bak
+*.swp
+*~
+
+# Node modules (만약 사용한다면)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# 빌드 파일
+dist/
+build/
