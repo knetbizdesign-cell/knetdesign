@@ -25,6 +25,7 @@ body {
 a {
     color: inherit;
     text-decoration: none;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif;
 }
 
 img {
@@ -341,8 +342,8 @@ img {
 }
 
 .featured-title {
-    /* Figma 카드 타이틀: 26px, line-height ~34px */
-    font-size: 26px;
+    /* 카드 타이틀: 24px */
+    font-size: 24px;
     line-height: 34px;
     font-weight: 700;
     margin: 0;
@@ -365,7 +366,7 @@ img {
     padding: 0;
     border: none;
     background: none;
-    font-size: 35px;
+    font-size: 24px;
     cursor: pointer;
     color: #505050;
 }
@@ -416,8 +417,8 @@ img {
 }
 
 .article-title {
-    /* Figma: 26px */
-    font-size: 26px;
+    /* 리스트 타이틀: 24px */
+    font-size: 24px;
     font-weight: 700;
     margin: 0;
 }
