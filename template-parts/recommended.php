@@ -9,9 +9,13 @@ $featured_query = new WP_Query([
     'ignore_sticky_posts' => true,
 ]);
 
-// 썸네일이 없을 때 사용할 테마 기본 이미지 (1~10.png 순환)
-$borobill_thumb_index = 1;
-$borobill_thumb_max   = 10;
+// 추천 카드 전용 기본 이미지 매핑 (2, 3, 4번 이미지를 순서대로 사용)
+$borobill_featured_fallbacks = [
+    1 => '2.png',
+    2 => '3.png',
+    3 => '4.png',
+];
+$borobill_featured_index = 1;
 ?>
 
 <section class="section section-featured">
@@ -49,11 +53,12 @@ $borobill_thumb_max   = 10;
                                     'alt'   => esc_attr( get_the_title() ),
                                 ] );
                             } else {
-                                $fallback_src = get_template_directory_uri() . '/images/' . $borobill_thumb_index . '.png';
-                                $borobill_thumb_index++;
-                                if ( $borobill_thumb_index > $borobill_thumb_max ) {
-                                    $borobill_thumb_index = 1;
-                                }
+                                // 지정된 2.png, 3.png, 4.png 이미지를 순서대로 사용
+                                $fallback_key = isset( $borobill_featured_fallbacks[ $borobill_featured_index ] )
+                                    ? $borobill_featured_index
+                                    : 1;
+                                $fallback_src = get_template_directory_uri() . '/images/' . $borobill_featured_fallbacks[ $fallback_key ];
+                                $borobill_featured_index++;
                                 ?>
                                 <img src="<?php echo esc_url( $fallback_src ); ?>"
                                      class="featured-thumb"
