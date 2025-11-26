@@ -34,17 +34,19 @@ jQuery(function ($) {
                 button: { text: '사용하기' },
                 multiple: false
             });
-
-            frame.on('select', function () {
-                var attachment = frame.state().get('selection').first().toJSON();
-                $wrap.find('.borobill-qe-thumb-id').val(attachment.id);
-                if (attachment.sizes && attachment.sizes.thumbnail) {
-                    $wrap.find('.borobill-qe-thumb').attr('src', attachment.sizes.thumbnail.url).show();
-                } else {
-                    $wrap.find('.borobill-qe-thumb').attr('src', attachment.url).show();
-                }
-            });
         }
+
+        // 클릭할 때마다 현재 행($wrap)을 기준으로 선택 결과 적용
+        frame.off('select');
+        frame.on('select', function () {
+            var attachment = frame.state().get('selection').first().toJSON();
+            $wrap.find('.borobill-qe-thumb-id').val(attachment.id);
+            if (attachment.sizes && attachment.sizes.thumbnail) {
+                $wrap.find('.borobill-qe-thumb').attr('src', attachment.sizes.thumbnail.url).show();
+            } else {
+                $wrap.find('.borobill-qe-thumb').attr('src', attachment.url).show();
+            }
+        });
 
         frame.open();
     });
